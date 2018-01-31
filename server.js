@@ -3,7 +3,7 @@ if (!process.env.PORT) {
 }
 
 const express = require('express');
-const sequelize = require('sequelize')
+const Sequelize = require('sequelize')
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
@@ -17,6 +17,12 @@ const comments = require('./routes/comments');
 const purchases = require('./routes/purchases');
 
 const app = express();
+
+sequelize = new Sequelize('cat-craigslist-development', 'root', '', {
+  host: 'localhost',
+  port: 5432,
+  dialect: 'postgres'
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
