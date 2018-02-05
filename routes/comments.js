@@ -7,12 +7,12 @@ let comments = require('../json/comments')
 router.post('/', (req, res) => {
     comments.unshift(req.body);
 
-    res.redirect('/pets/0');
+    res.redirect('/cats/0');
 });
 
 // DESTROY
 router.delete('/:index', (req, res) => {
-  res.redirect(`/pets/${req.params.id}`);
+  res.redirect(`/cats/${req.params.id}`);
 });
 
 

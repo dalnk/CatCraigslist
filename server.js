@@ -12,7 +12,7 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override')
 
 const index = require('./routes/index');
-const pets = require('./routes/pets');
+const pets = require('./routes/cats');
 const comments = require('./routes/comments');
 const purchases = require('./routes/purchases');
 
@@ -40,8 +40,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/pets', pets);
-app.use('/pets/:petId/comments', comments);
+app.use('/cats', pets);
+app.use('/cats/:petId/comments', comments);
 app.use(purchases);
 
 // catch 404 and forward to error handler

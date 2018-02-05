@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+let model = require('../models/')
 let pets = require('../json/pets')
 let comments = require('../json/comments')
 
@@ -12,29 +13,30 @@ router.get('/', (req, res) => {
 
 // NEW
 router.get('/new', (req, res) => {
-  res.render('pets-new');
+  res.render('cats-new');
 });
 
 // SHOW
 router.get('/:index', (req, res) => {
-  res.render('pets-show', { pet: pets[req.params.index], comments: comments });
+  model.Cat.findById(req.params.index ).then(cat => {
+    res.render('cats-show', {cat:cat, comments:comments})
+  })
 });
 
 // CREATE
 router.post('/', (req, res) => {
-    pets.unshift(req.body);
-
+    model.Cat.create(req.body)
     res.redirect('/');
 });
 
 // EDIT
 router.get('/:index/edit', (req, res) => {
-  res.render('pets-edit', { pet: pets[req.params.index]});
+  res.render('cats-edit', { pet: pets[req.params.index]});
 });
 
 // UPDATE
 router.put('/:index', (req, res) => {
-  res.redirect(`/pets/${req.params.index}`)
+  res.redirect(`/cats/${req.params.index}`)
 });
 
 // DESTROY

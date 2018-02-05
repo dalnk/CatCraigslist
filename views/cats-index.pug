@@ -2,7 +2,7 @@ extends layout
 
 block content
   .row
-    each cat, index in cats
+    each cat in cats
       .col-sm-4.justify-content-center
         .card
           img.card-img-top(src=cat.picUrl, alt='Card image cap')
@@ -11,5 +11,5 @@ block content
             small.text-muted= cat.species
             p.card-text= cat.description
             .text-right
-                a.card-link(href="/cats/" + index) View cat named #{cat.name}
+              a.card-link(href="/cats/" + cat.id) View cat named #{cat.name}
 
