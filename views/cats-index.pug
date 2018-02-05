@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  .row
+    each cat, index in cats
+      .col-sm-4.justify-content-center
+        .card
+          img.card-img-top(src=cat.picUrl, alt='Card image cap')
+          .card-body
+            h4.card-title= cat.name
+            small.text-muted= cat.species
+            p.card-text= cat.description
+            .text-right
+                a.card-link(href="/cats/" + index) View cat named #{cat.name}
+
