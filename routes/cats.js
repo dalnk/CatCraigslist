@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
     model.Cat.create(req.body)
     res.redirect('/');
 });
-
+i
 // EDIT
 router.get('/:index/edit', (req, res) => {
   res.render('cats-edit', { pet: pets[req.params.index]});
@@ -36,6 +36,9 @@ router.get('/:index/edit', (req, res) => {
 
 // UPDATE
 router.put('/:index', (req, res) => {
+  model.Cat.findById(req.params.index).then(cat => {
+    cat.update(req.body)
+  })
   res.redirect(`/cats/${req.params.index}`)
 });
 
