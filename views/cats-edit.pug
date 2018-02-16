@@ -5,29 +5,20 @@ block content
     .row.justify-content-center
         .col-sm-6
             legend New Cat
-            form(action="/pets/0?_method=PUT", method="POST")
+            form(action="/cats/" + cat.id + "?_method=PUT", method="POST")
                 .form-group
                     label Name
-                    input.form-control(name="name" value=pet.name)
+                    input.form-control(name="name" value=cat.name)
                 .form-group
                     label Species
-                    input.form-control(name="species" value=pet.species)    
+                    input.form-control(name="species" value=cat.species)    
                 .form-group
                     label Rectangular Image URL
-                    input.form-control(name="picUrl" value=pet.picUrl) 
+                    input.form-control(name="picUrl" value=cat.picUrl) 
                 .form-group
-                    label Square Image URL
-                    input.form-control(name="picUrlSq" value=pet.picUrlSq)
-                .form-group
-                    label Birthday
-                    input.form-control(name="birthday" value=pet.birthday)    
-                .form-group
-                    label Favorite Food
-                    input.form-control(name="favoriteFood" value=pet.favoriteFood)    
-                .form-group
-                    label Description
-                    textarea.form-control(name="description")= pet.description
+                    label Biography
+                    textarea.form-control(name="bio")= cat.bio
                 button(type="submit").btn.btn-primary Save
             .text-right
-                form(action="/pets/0?_method=DELETE", method="POST")
+              form(action="/cats/" + cat.id + "?_method=DELETE", method="POST")
                     button(type="submit").btn.btn-danger Remove

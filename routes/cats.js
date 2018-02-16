@@ -28,10 +28,12 @@ router.post('/', (req, res) => {
     model.Cat.create(req.body)
     res.redirect('/');
 });
-i
+
 // EDIT
 router.get('/:index/edit', (req, res) => {
-  res.render('cats-edit', { pet: pets[req.params.index]});
+  model.Cat.findById(req.params.index ).then(cat => {
+    res.render('cats-edit', {cat:cat})
+  })
 });
 
 // UPDATE
@@ -44,6 +46,9 @@ router.put('/:index', (req, res) => {
 
 // DESTROY
 router.delete('/:index', (req, res) => {
+  model.Cat.findById(req.params.index).then(cat => {
+    cat.destroy()
+  })
   res.redirect('/');
 });
 

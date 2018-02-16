@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   var Cat = sequelize.define('Cat', {
     name: DataTypes.STRING,
     species: DataTypes.STRING,
+    picUrl: DataTypes.STRING,
     bio: DataTypes.TEXT
   }, {
     classMethods: {
