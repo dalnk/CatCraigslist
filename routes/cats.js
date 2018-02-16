@@ -23,6 +23,13 @@ router.get('/:index', (req, res) => {
   })
 });
 
+// LOVE
+router.get('/:index/love', (req, res) => {
+  model.Cat.findById(req.params.index ).then(cat => {
+    res.render('cats-love', {cat:cat})
+  })
+});
+
 // CREATE
 router.post('/', (req, res) => {
     model.Cat.create(req.body)

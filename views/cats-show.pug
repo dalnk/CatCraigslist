@@ -8,9 +8,8 @@ block content
             h1=cat.name
             p=cat.species
             .text-right
-              a.btn.btn-primary(href="/cats/" + cat.id + "/purchase" role='button') Buy #{cat.name} Now!
-            p Born on #{cat.birthday}
-            p=cat.description
+              a.btn.btn-danger(href="/cats/" + cat.id + "/love" role='button') Love #{cat.name} Now!
+            p=cat.bio
             .text-right
                 a(href="/cats/" + cat.id + "/edit").btn-link Edit
             
