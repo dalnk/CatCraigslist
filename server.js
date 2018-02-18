@@ -17,6 +17,9 @@ const comments = require('./routes/comments');
 const purchases = require('./routes/purchases');
 
 const app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http)
+
 
 sequelize = new Sequelize('cat-craigslist-development', 'root', '', {
   host: 'localhost',
@@ -60,6 +63,14 @@ app.use((err, req, res, next) => {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+io.on('connection', function(socket) {
+  console.log('connected')
+})
+
+http.listen(4000, function(){
+  console.log('listening on 4000');
 });
 
 module.exports = app;
