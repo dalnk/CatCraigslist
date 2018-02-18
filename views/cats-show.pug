@@ -7,6 +7,7 @@ block content
         .col-sm-8
             h1=cat.name
             p=cat.species
+            p.status Alive: true
             .text-right
               a.btn.btn-danger(href="/cats/" + cat.id + "/love" role='button') Love #{cat.name} Now!
             p=cat.bio
