@@ -15,6 +15,9 @@ html
         ul.navbar-nav
           li.nav-item
             a.nav-link(href='/cats/new') New Cat
+        form.form-inline(class='mt-2 mt-md-0' action='/' method='GET')
+          input.form-control(type='text' name='search')
+          button.btn(type='submit') Search
 
     .container
       block content
