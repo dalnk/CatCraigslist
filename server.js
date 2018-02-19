@@ -17,8 +17,8 @@ const comments = require('./routes/comments');
 const purchases = require('./routes/purchases');
 
 const app = express();
-const http = require('http').Server(app);
-const io = require('socket.io')(http)
+//const http = require('http').Server(app);
+//const io = require('socket.io')(http)
 
 const { Client } = require('pg');
 const client = new Client({
@@ -48,8 +48,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/cats', pets);
-app.use('/cats/:petId/comments', comments);
-app.use(purchases);
+app.use('/cats/:catId/comments', comments);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -64,17 +63,19 @@ app.use((err, req, res, next) => {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  if(err.status == 404){
+    res.redirect('/404.html')
+  } else {
+    res.redirect('/500.html')
+  }
 });
 
-io.on('connection', function(socket) {
-  console.log('connected')
-})
+//io.on('connection', function(socket) {
+//  console.log('connected')
+//})
 
-http.listen(4000, function(){
-  console.log('listening on 4000');
-});
+//http.listen(4000, function(){
+//  console.log('listening on 4000');
+//});
 
 module.exports = app;
