@@ -1,0 +1,18 @@
+{
+  "name": "CatCraigslist",
+  "description": "cat shop",
+  "main": "server.js",
+  "authors": [
+    "Dennis Aleynikov <daleynikov@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/dalnk/CatCraigslist",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
