@@ -25,10 +25,9 @@ const client = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: true
 })
+client.connect()
 
-sequelize = new Sequelize('cat-craigslist-development', 'root', '', {
-  host: 'localhost',
-  port: 5432,
+sequelize = new Sequelize('cat-craigslist', 'root', process.env.SQLPASS, {
   dialect: 'postgres'
 });
 
