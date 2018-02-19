@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const emailService = require('./email')
 
 let model = require('../models/')
-let pets = require('../json/pets')
+
 
 /* GET home page. */
 router.get('/', (req, res) => {
@@ -41,23 +42,15 @@ router.get('/', (req, res) => {
   })
 });
 
-router.post('/', (req, res) => {
+router.get('/email', (req, res) => {
   // Check if search term present
-  if(req.query.search) {
-    sanitary = "%" + req.query.search + "%"
-
-    query = {
-      $or: [{name:{$iLike: sanitary}},
-        {species:{$iLike: sanitary}},
-        {bio:{$iLike: sanitary}}]
-    }
-
-    model.Cat.findAll({
-      where:query
-    }).then((cats) => {
-      res.render('cats-index', {cats})
+  emailService.sendText('dennis@aleynikov.me', 'cat for u', 'this cat was for u')
+    .then((info) => {
+      res.status(200)
+    }).catch((err) => {
+      console.log(err)
+      res.status(500)
     })
-  }
 })
 
 module.exports = router;
