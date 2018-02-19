@@ -20,6 +20,11 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http)
 
+const { Client } = require('pg');
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+})
 
 sequelize = new Sequelize('cat-craigslist-development', 'root', '', {
   host: 'localhost',
