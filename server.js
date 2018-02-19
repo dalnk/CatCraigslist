@@ -15,6 +15,7 @@ const index = require('./routes/index');
 const pets = require('./routes/cats');
 const comments = require('./routes/comments');
 const purchases = require('./routes/purchases');
+const paginate = require('express-paginate');
 
 const app = express();
 //const http = require('http').Server(app);
@@ -27,13 +28,16 @@ const client = new Client({
 })
 client.connect()
 
-sequelize = new Sequelize('cat-craigslist', 'root', process.env.SQLPASS, {
+sequelize = new Sequelize("cat-craigslist-development", 'root', '', {
   dialect: 'postgres'
 });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+// use pagination middleware
+app.use(paginate.middleware(3, 50));
 
 // override with POST having ?_method=DELETE or ?_method=PUT
 app.use(methodOverride('_method'))
